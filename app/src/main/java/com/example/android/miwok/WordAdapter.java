@@ -41,9 +41,9 @@ public class WordAdapter extends ArrayAdapter<Word> {
         }
 
         // find the textview in the list_item.xml layout with the id text1
-        TextView miwokTV = listItemView.findViewById(R.id.text1);
+        TextView miwokTV = listItemView.findViewById(R.id.miwokTextView);
         //find the other textview
-        TextView defaultTV = listItemView.findViewById(R.id.text2);
+        TextView defaultTV = listItemView.findViewById(R.id.defaultTextView);
 
         miwokTV.setText(currentWord.getMiwokTranslation());
         defaultTV.setText(currentWord.getDefaultTranslation());

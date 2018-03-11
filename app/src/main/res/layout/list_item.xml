@@ -7,7 +7,7 @@
     android:padding="16dp">
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/text1"
+        android:id="@+id/miwokTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -18,7 +18,7 @@
         tools:text="lutti" />
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/text2"
+        android:id="@+id/defaultTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
