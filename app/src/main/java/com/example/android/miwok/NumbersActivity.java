@@ -62,7 +62,10 @@ public class NumbersActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
-        GridView gridView = findViewById(R.id.gridView);
+        ListView gridView = findViewById(R.id.gridView);
         gridView.setAdapter(adapter);
+
+        ListUtils.setDynamicHeight(listView);
+        ListUtils.setDynamicHeight(gridView);
     }
 }

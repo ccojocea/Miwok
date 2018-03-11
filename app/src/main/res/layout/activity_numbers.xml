@@ -13,36 +13,58 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:fillViewport="true"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <ListView
-        android:id="@+id/listView"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.example.android.miwok.NumbersActivity"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
-    <GridView
-        android:id="@+id/gridView"
-        android:numColumns="auto_fit"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        tools:context="com.example.android.miwok.NumbersActivity"/>
+            <TextView
+                android:id="@+id/textView1"
+                android:padding="@dimen/activity_vertical_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="First listView"/>
 
-</LinearLayout>
+            <ListView
+                android:layout_below="@id/textView1"
+                android:id="@+id/listView"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                tools:context="com.example.android.miwok.NumbersActivity"/>
+
+            <TextView
+                android:layout_below="@id/listView"
+                android:padding="@dimen/activity_vertical_margin"
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Second listView"/>
+
+            <ListView
+                android:layout_below="@id/textView2"
+                android:id="@+id/gridView"
+                android:numColumns="auto_fit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context="com.example.android.miwok.NumbersActivity"/>
+
+        </RelativeLayout>
+
+
+</ScrollView>
 
