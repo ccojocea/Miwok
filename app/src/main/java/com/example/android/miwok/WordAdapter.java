@@ -31,18 +31,17 @@ public class WordAdapter extends ArrayAdapter<Word> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        // get the object located at this position in the list
+        Word currentWord = getItem(position);
+
         // check if the existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
         if(listItemView == null){
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
-        // get the object located at this position in the list
-        Word currentWord = getItem(position);
-
         // find the textview in the list_item.xml layout with the id text1
         TextView miwokTV = listItemView.findViewById(R.id.text1);
-
         //find the other textview
         TextView defaultTV = listItemView.findViewById(R.id.text2);
 

@@ -37,15 +37,15 @@ public class NumbersActivity extends AppCompatActivity {
 
         ArrayList<Word> words = new ArrayList<>();
         words.add(new Word("one", "lutti"));
-        words.add(new Word("two", "lutti"));
-        words.add(new Word("three", "lutti"));
-        words.add(new Word("four", "lutti"));
-        words.add(new Word("five", "lutti"));
-        words.add(new Word("six", "lutti"));
-        words.add(new Word("seven", "lutti"));
-        words.add(new Word("eight", "lutti"));
-        words.add(new Word("nine", "lutti"));
-        words.add(new Word("ten", "lutti"));
+        words.add(new Word("two", "otiiko"));
+        words.add(new Word("three", "tolookosu"));
+        words.add(new Word("four", "oyyisa"));
+        words.add(new Word("five", "massokka"));
+        words.add(new Word("six", "temmokka"));
+        words.add(new Word("seven", "kenekaku"));
+        words.add(new Word("eight", "kawinta"));
+        words.add(new Word("nine", "wo'e"));
+        words.add(new Word("ten", "na'aacha"));
 
 /*
         LinearLayout rootView = findViewById(R.id.rootView);
