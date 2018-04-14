@@ -1,6 +1,8 @@
 package com.example.android.miwok;
 
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.provider.MediaStore;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +24,7 @@ import java.util.List;
 
 public class WordAdapter extends ArrayAdapter<Word> {
     private int colorId;
+    private MediaPlayer mediaPlayer;
 
     /*
     public WordAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Word> numberWords) {
@@ -36,7 +40,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         // get the object located at this position in the list
-        Word currentWord = getItem(position);
+        final Word currentWord = getItem(position);
 
         // check if the existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
@@ -44,8 +48,21 @@ public class WordAdapter extends ArrayAdapter<Word> {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
-        LinearLayout textCon = listItemView.findViewById(R.id.text_container);
+        View textCon = listItemView.findViewById(R.id.text_container);
         textCon.setBackgroundResource(colorId);
+        /*
+        int color = ContextCompat.getColor(getContext(), colorId);
+        textCon.setBackgroundColor(color);
+         */
+
+        ImageButton play = listItemView.findViewById(R.id.play_button);
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer = MediaPlayer.create(getContext(), currentWord.getSoundResourceId());
+                mediaPlayer.start();
+            }
+        });
 
         ImageView miwokIV = listItemView.findViewById(R.id.imageView);
         if(currentWord.hasImage()){
