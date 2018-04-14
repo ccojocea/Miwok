@@ -111,4 +111,10 @@ public class NumbersActivity extends AppCompatActivity {
         ListUtils.setDynamicHeight(listView);
         ListUtils.setDynamicHeight(gridView);
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
 }
