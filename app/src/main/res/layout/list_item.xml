@@ -43,6 +43,4 @@
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
             tools:text="one" />
 
-
-
 </RelativeLayout>
