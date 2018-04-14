@@ -58,7 +58,7 @@ public class NumbersActivity extends AppCompatActivity {
             tv.setText(s);
         }
 */
-        WordAdapter adapter = new WordAdapter(this, words);
+        WordAdapter adapter = new WordAdapter(this, words, R.color.category_numbers);
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
 

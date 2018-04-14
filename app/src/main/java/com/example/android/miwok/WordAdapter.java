@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,14 +20,16 @@ import java.util.List;
  */
 
 public class WordAdapter extends ArrayAdapter<Word> {
+    private int colorId;
 
     /*
     public WordAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Word> numberWords) {
         super(context, resource, numberWords);
     }
      */
-    public WordAdapter(@NonNull Context context, @NonNull ArrayList<Word> numberWords) {
+    public WordAdapter(@NonNull Context context, @NonNull ArrayList<Word> numberWords, int colorId) {
         super(context, 0, numberWords);
+        this.colorId = colorId;
     }
 
     @NonNull
@@ -40,6 +43,9 @@ public class WordAdapter extends ArrayAdapter<Word> {
         if(listItemView == null){
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
+
+        LinearLayout textCon = listItemView.findViewById(R.id.text_container);
+        textCon.setBackgroundResource(colorId);
 
         ImageView miwokIV = listItemView.findViewById(R.id.imageView);
         if(currentWord.hasImage()){
