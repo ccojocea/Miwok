@@ -24,11 +24,6 @@ public class Word {
         mSoundResourceId = soundId;
     }
 
-    public Word(String dt, String mt){
-        mDefaultTranslation = dt;
-        mMiwokTranslation = mt;
-    }
-
     public String getDefaultTranslation(){
         return mDefaultTranslation;
     }

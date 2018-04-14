@@ -25,7 +25,7 @@ import java.util.List;
 
 public class WordAdapter extends ArrayAdapter<Word> {
     private int colorId;
-    private MediaPlayer mediaPlayer;
+    //private MediaPlayer mediaPlayer;
 
     /*
     public WordAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Word> numberWords) {
@@ -56,6 +56,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         textCon.setBackgroundColor(color);
          */
 
+        /*
         ImageButton play = listItemView.findViewById(R.id.play_button);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +73,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
                 mediaPlayer.start();
             }
         });
+        */
 
         ImageView miwokIV = listItemView.findViewById(R.id.imageView);
         if(currentWord.hasImage()){

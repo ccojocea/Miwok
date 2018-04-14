@@ -8,12 +8,6 @@
     android:minHeight="@dimen/list_item_height"
     android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/play_button"
-        android:layout_width="@dimen/list_item_height"
-        android:layout_height="@dimen/list_item_height"
-        android:src="@drawable/play_button"/>
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="@dimen/list_item_height"
