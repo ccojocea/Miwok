@@ -41,9 +41,11 @@ public class WordAdapter extends ArrayAdapter<Word> {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
+        ImageView miwokIV = listItemView.findViewById(R.id.imageView);
         if(currentWord.getImageResourceId() != 0){
-            ImageView miwokIV = listItemView.findViewById(R.id.imageView);
             miwokIV.setImageResource(currentWord.getImageResourceId());
+        } else {
+            miwokIV.setVisibility(View.GONE);
         }
 
         // find the textview in the list_item.xml layout with the id text1
