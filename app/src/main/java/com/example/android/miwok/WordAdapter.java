@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,6 +39,11 @@ public class WordAdapter extends ArrayAdapter<Word> {
         View listItemView = convertView;
         if(listItemView == null){
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
+        }
+
+        if(currentWord.getImageResourceId() != 0){
+            ImageView miwokIV = listItemView.findViewById(R.id.imageView);
+            miwokIV.setImageResource(currentWord.getImageResourceId());
         }
 
         // find the textview in the list_item.xml layout with the id text1
