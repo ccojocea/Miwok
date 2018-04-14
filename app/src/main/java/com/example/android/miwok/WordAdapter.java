@@ -6,6 +6,7 @@ import android.provider.MediaStore;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,14 @@ public class WordAdapter extends ArrayAdapter<Word> {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(mediaPlayer != null && mediaPlayer.isPlaying()){
+                    mediaPlayer.stop();
+                    mediaPlayer.release();
+                }
+                if(mediaPlayer != null){
+                    mediaPlayer.release();
+                    Log.d("RELEASE ME!!!", "RELEAAAAAAAASE MEEEEEEE!!!!");
+                }
                 mediaPlayer = MediaPlayer.create(getContext(), currentWord.getSoundResourceId());
                 mediaPlayer.start();
             }
