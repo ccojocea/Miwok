@@ -18,6 +18,7 @@ package com.example.android.miwok;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -35,8 +36,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Set the content of the activity to use the activity_main.xml layout file
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_fragments);
 
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        MainFragmentPagerAdapter mainFragmentPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager());
+
+        viewPager.setAdapter(mainFragmentPagerAdapter);
+
+        /*
         TextView phrasesTV = findViewById(R.id.phrases);
         phrasesTV.setOnClickListener(new OnClickListener() {
             @Override
@@ -73,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        */
     }
 
 }
