@@ -16,6 +16,7 @@
 package com.example.android.miwok;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -28,10 +29,19 @@ public class MainActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main_fragments);
 
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+
         ViewPager viewPager = findViewById(R.id.view_pager);
-        CategoryAdapter categoryAdapter = new CategoryAdapter(getSupportFragmentManager());
+        CategoryAdapter categoryAdapter = new CategoryAdapter(this, getSupportFragmentManager());
 
         viewPager.setAdapter(categoryAdapter);
+
+        /*
+        for(int i = 0; i < categoryAdapter.getCount(); i++){
+            tabLayout.addTab(tabLayout.newTab().setText(categoryAdapter.getPageTitle(i)));
+        }
+        */
+        tabLayout.setupWithViewPager(viewPager);
 
         /*
         TextView phrasesTV = findViewById(R.id.phrases);
