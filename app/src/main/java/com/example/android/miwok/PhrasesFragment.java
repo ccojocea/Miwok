@@ -129,4 +129,13 @@ public class PhrasesFragment extends Fragment {
         super.onStop();
         releaseMediaPlayer();
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if(!isVisibleToUser){
+            releaseMediaPlayer();
+        }
+    }
 }

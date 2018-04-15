@@ -15,19 +15,9 @@
  */
 package com.example.android.miwok;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-
-import javax.security.auth.login.LoginException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_fragments);
 
         ViewPager viewPager = findViewById(R.id.view_pager);
-        MainFragmentPagerAdapter mainFragmentPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager());
+        CategoryAdapter categoryAdapter = new CategoryAdapter(getSupportFragmentManager());
 
-        viewPager.setAdapter(mainFragmentPagerAdapter);
+        viewPager.setAdapter(categoryAdapter);
 
         /*
         TextView phrasesTV = findViewById(R.id.phrases);

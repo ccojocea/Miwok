@@ -124,4 +124,13 @@ public class ColorsFragment extends Fragment {
         super.onStop();
         releaseMediaPlayer();
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if(!isVisibleToUser){
+            releaseMediaPlayer();
+        }
+    }
 }
