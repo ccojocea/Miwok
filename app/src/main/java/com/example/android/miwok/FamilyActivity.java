@@ -15,6 +15,8 @@
  */
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,11 +31,36 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class FamilyActivity extends AppCompatActivity {
-    private MediaPlayer mp;
+    private MediaPlayer mMediaPlayer;
+    private AudioManager mAudioManager;
     private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
             releaseMediaPlayer();
+        }
+    };
+    private AudioManager.OnAudioFocusChangeListener afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+            switch (focusChange){
+                default:
+                    break;
+                case AudioManager.AUDIOFOCUS_GAIN:
+                    if(mMediaPlayer != null){
+                        mMediaPlayer.start();
+                    }
+                    break;
+                case AudioManager.AUDIOFOCUS_LOSS:
+                    releaseMediaPlayer();
+                    break;
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                    if(mMediaPlayer != null){
+                        mMediaPlayer.pause();
+                        mMediaPlayer.seekTo(0);
+                    }
+                    break;
+            }
         }
     };
 
@@ -42,15 +69,17 @@ public class FamilyActivity extends AppCompatActivity {
      */
     private void releaseMediaPlayer() {
         // If the media player is not null, then it may be currently playing a sound.
-        if (mp != null) {
+        if (mMediaPlayer != null) {
             // Regardless of the current state of the media player, release its resources
             // because we no longer need it.
-            mp.release();
+            mMediaPlayer.release();
 
             // Set the media player back to null. For our code, we've decided that
             // setting the media player to null is an easy way to tell that the media player
             // is not configured to play an audio file at the moment.
-            mp = null;
+            mMediaPlayer = null;
+
+            mAudioManager.abandonAudioFocus(afChangeListener);
         }
     }
 
@@ -58,6 +87,8 @@ public class FamilyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
+
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         final ArrayList<Word> words = new ArrayList<>();
         words.add(new Word("father", "әpә", R.drawable.family_father, R.raw.family_father));
@@ -87,14 +118,14 @@ public class FamilyActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 releaseMediaPlayer();
                 Word currentWord = words.get(i);
-                Log.d("ClickClick", "onItemClick: " + currentWord.getDefaultTranslation());
-                Toast.makeText(FamilyActivity.this, currentWord.getDefaultTranslation(), Toast.LENGTH_SHORT).show();
-                if(currentWord != null){
-                    mp = MediaPlayer.create(getApplicationContext(), currentWord.getSoundResourceId());
-                    mp.start();
-                    mp.setOnCompletionListener(mCompletionListener);
+                int result = mAudioManager.requestAudioFocus(afChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED){
+                    mMediaPlayer = MediaPlayer.create(FamilyActivity.this,
+                            currentWord.getSoundResourceId());
+                    mMediaPlayer.start();
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
                 } else {
-                    Toast.makeText(FamilyActivity.this, "Big fucking fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FamilyActivity.this, "Cannot play media at this time, try again later", Toast.LENGTH_SHORT).show();
                 }
             }
         });
